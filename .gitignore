@@ -1,3 +1,8 @@
+# Data files
+data/*.[txt,csv,pq,parquet,zip]
+data/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -172,3 +177,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# MacOS directory files
+.DS_Store
