@@ -1,6 +1,11 @@
 # Data files
 data/*.[txt,csv,pq,parquet,zip]
 data/
+*.csv
+
+# Plot files
+*.png
+*.html
 
 
 # Byte-compiled / optimized / DLL files
