@@ -47,12 +47,19 @@ def cartesian_to_eta_phi_r(x: float, y: float, z: float) -> tuple[float, float, 
     Returns:
         tuple[float, float, float]: Pseudorapidity (eta), azimuthal angle (phi), and radius (r) from interaction point
     """
+    # r = np.sqrt(x**2 + y**2 + z**2)  # radius from interaction point
+    # r_xy = np.sqrt(x**2 + y**2)  # radius in xy plane
+    # theta = np.abs(np.arctan(r_xy/z))  # polar angle between direction and positive z-axis
+    # eta = -np.log(np.tan(theta/2))  # pseudorapidity
+    # phi = np.arctan2(y, x)  # azimuthal angle in [-pi,pi]
+    # phi = phi if phi >= 0 else phi + 2*np.pi  # convert to [0,2pi] range
+
+    # Different approach
     r = np.sqrt(x**2 + y**2 + z**2)  # radius from interaction point
     r_xy = np.sqrt(x**2 + y**2)  # radius in xy plane
-    theta = np.abs(np.arctan(r_xy/z))  # polar angle between direction and positive z-axis
-    eta = -np.log(np.tan(theta/2))  # pseudorapidity
+    # Alternate calculation: eta = 0.5 * ln((r + z) / (r - z))
+    eta = 0.5 * np.log((r + z) / (r - z))  # pseudorapidity
     phi = np.arctan2(y, x)  # azimuthal angle in [-pi,pi]
-    phi = phi if phi >= 0 else phi + 2*np.pi  # convert to [0,2pi] range
     return eta, phi, r
 
 def cartesian_to_eta_phi(x: float, y: float, z: float) -> tuple[float, float]:
@@ -70,7 +77,7 @@ def cartesian_to_eta_phi(x: float, y: float, z: float) -> tuple[float, float]:
     theta = np.abs(np.arctan(r_xy/z))  # polar angle between direction and positive z-axis
     eta = -np.log(np.tan(theta/2))  # pseudorapidity
     phi = np.arctan2(y, x)  # azimuthal angle in [-pi,pi]
-    phi = phi if phi >= 0 else phi + 2*np.pi  # convert to [0,2pi] range
+    # phi = phi if phi >= 0 else phi + 2*np.pi  # convert to [0,2pi] range
     return eta, phi
 
 def eta_phi_to_cartesian(eta: float, phi: float, r: float = 1) -> tuple[float, float, float]:
@@ -98,9 +105,9 @@ if __name__ == "__main__":
         (0, 1, 0.1), # y-axis
         (0, 1, 5), # endcap event
         ]
-    for x, y, z in example_xyz:
-        eta, phi, r = cartesian_to_eta_phi_r(x, y, z)
+    for _x, y, z in example_xyz:
+        eta, phi, r = cartesian_to_eta_phi_r(_x, y, z)
         x_new, y_new, z_new = eta_phi_to_cartesian(eta, phi, r=r)
-        print(f"({x}, {y}, {z}) -> eta: {eta:.5f}, phi: {phi:.5f} -> ({x_new:.5f}, {y_new:.5f}, {z_new:.5f})")
+        print(f"({_x}, {y}, {z}) -> eta: {eta:.5f}, phi: {phi:.5f} -> ({x_new:.5f}, {y_new:.5f}, {z_new:.5f})")
         # print(f"({eta:.5f}, {phi:.5f}) -> ({x_new:.5f}, {y_new:.5f}, {z_new:.5f})")
         print()
