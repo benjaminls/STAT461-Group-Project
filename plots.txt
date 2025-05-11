@@ -1,0 +1,9 @@
+Only event 1000 (train_1 directory):
+- xy hits (with/without pT filtering) with x axis as horizontal
+- yz hits (with/without pT filtering) with z axis as horizontal
+- xz hits (with/without pT filtering) with z axis as horizontal
+- eta-phi plot (eta as horizontal axis) (with/without pT filtering)
+- momentum (p) plot using truth data (p = sqrt(px^2 + py^2 + pz^2)) with y-axis log scale, after pT<2 filtering
+- transverse momentum (p) plot using truth data (pT = sqrt(px^2 + py^2)) with y-axis log scale, after pT<2 filtering
+- xy plot with a couple truth tracks displayed with a different-colored line.
+- yz plot with a couple truth tracks displayed with a different-colored line.
