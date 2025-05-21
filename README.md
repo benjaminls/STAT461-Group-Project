@@ -6,7 +6,7 @@
 
 Placeholder
 
-### PyG Data Loaders
+### PowerPoint Slides and PyG Data Loaders
 https://drive.google.com/drive/folders/1cN6LXsStMcSE5RdHkAYo9j68MNOem1r0?usp=sharing
 
 ### Downloading Datasets
